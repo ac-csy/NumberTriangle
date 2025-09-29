@@ -92,10 +92,10 @@ public class NumberTriangle {
         // TODO implement this method
         NumberTriangle current = this;
         for (int i = 0; i < path.length(); i++) {
-            char c = path.charAt(i);
-            if (c == 'l') {
+            char k = path.charAt(i);
+            if (k == 'l') {
                 current = current.left;
-            } else if (c == 'r') {
+            } else if (k == 'r') {
                 current = current.right;
             }
         }
@@ -139,16 +139,20 @@ public class NumberTriangle {
                 currLine.add(new NumberTriangle(Integer.parseInt(num)));
             }
             if (!prevLine.isEmpty()) {
-                for (int i = 0; i < prevLine.size(); i++) {
-                    prevLine.get(i).setLeft(currLine.get(i));
-                    prevLine.get(i).setRight(currLine.get(i+1));
+                for (int j = 0; j < prevLine.size(); j++) {
+                    prevLine.get(j).setLeft(currLine.get(j));
+                    prevLine.get(j).setRight(currLine.get(j+1));
                 }
             }
 
             prevLine = currLine;
+            if (top == null) {
+                top = currLine.get(0);
+            }
             //read the next line
             line = br.readLine();
         }
+
         br.close();
         return top;
     }
